@@ -1,0 +1,71 @@
+class Book:
+   pass
+
+#1
+veil_of_roses = Book()
+veil_of_roses.__dict__['Title'] = 'veil_of_roses'
+veil_of_roses.__dict__['Author'] = 'Lora Fitchgerald'
+veil_of_roses.__dict__['Genre'] = 'novel'
+veil_of_roses.__dict__['Year_of_Publish'] = 2005
+veil_of_roses.__dict__['No_fo_Pages'] = 300
+#2
+veil_of_roses = Book()
+veil_of_roses.Title = 'veil_of_roses'
+veil_of_roses.Author = 'Lora Fitchgerald'
+veil_of_roses.Genre = 'novel'
+veil_of_roses.Year_of_Publish = 2005
+veil_of_roses.No_of_Pages = 300
+
+#3
+def create_book(title, author, genre, year_of_publish, no_of_pages):
+    book = Book()
+    book.Title = title
+    book.Author = author
+    book.Genre = genre
+    book.Year_of_Publish = year_of_publish
+    book.No_of_Pages = no_of_pages
+    return book
+
+hobit = create_book('The Hobbit', 'J.r.Tolkin', 'Fantasy', 1990, 2600)
+print(hobit.__dict__)
+
+
+#4  - NOT DONE , NO ROOM IN THIS FILE
+#5 -ETGAR
+def get_pool_books():
+    pool_books = []
+    book1 = create_book('The Hobbit', 'J.r.Tolkin', 'Fantasy', 1990, 400)
+    book2 = create_book('Gone For Good', 'H.Koben', 'Mistery', 2000, 500)
+    book3 = create_book('Beloved', 'T.Morison', 'Novel', 1987, 600)
+    pool_books.append(book1)
+    pool_books.append(book2)
+    pool_books.append(book3)
+    return pool_books
+
+
+def pop_book_by_title(dict_books: dict, selected_title: str):
+    is_title = input_selected_title in  dict_books.keys()
+    if not is_title:
+        return None
+    popped_item = dict_books.pop(input_selected_title)
+    return popped_item
+
+pool_books = get_pool_books()
+tupBookByTitle = [(book.Title, book) for book in pool_books]
+dicBookByTitle = {}
+for item in tupBookByTitle:
+    title = item[0]
+    book = item[1]
+    dicBookByTitle[title] = book
+
+print([f'Title={k} Book={v.__dict__}' for (k, v) in dicBookByTitle.items()])
+
+input_selected_title = input('Enter Title: ')
+popped_book = pop_book_by_title(dicBookByTitle, input_selected_title)
+
+print(popped_book.__dict__)
+
+
+
+
+
